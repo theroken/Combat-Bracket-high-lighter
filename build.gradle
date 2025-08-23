@@ -1,61 +1,40 @@
 plugins {
-	id 'java'
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
+
+group = 'com.combatbrackethighlighter'
+version = '1.0.0'
 
 repositories {
-	mavenLocal()
-	maven {
-		url = 'https://repo.runelite.net'
-		content {
-			includeGroupByRegex("net\\.runelite.*")
-		}
-	}
-	mavenCentral()
+    mavenCentral()
+    maven {
+        url = "https://repo.runelite.net"
+    }
 }
 
-def runeLiteVersion = 'latest.release'
+def runeLiteVersion = "1.11.14"  // latest RuneLite version
 
 dependencies {
-	compileOnly group: 'net.runelite', name:'client', version: runeLiteVersion
+    // RuneLite client
+    compileOnly group: 'net.runelite', name: 'client', version: runeLiteVersion
 
-	compileOnly 'org.projectlombok:lombok:1.18.30'
-	annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    // Lombok (optional, but common in RuneLite plugins)
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
 
-	testImplementation 'junit:junit:4.12'
-	testImplementation group: 'net.runelite', name:'client', version: runeLiteVersion
-	testImplementation group: 'net.runelite', name:'jshell', version: runeLiteVersion
+    // JUnit for testing
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation group: 'net.runelite', name: 'client', version: runeLiteVersion
 }
 
-group = 'com.example'
-version = '1.0-SNAPSHOT'
-
-tasks.withType(JavaCompile).configureEach {
-	options.encoding = 'UTF-8'
-	options.release.set(11)
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.release.set(11) // RuneLite runs on Java 11
 }
 
-tasks.register('shadowJar', Jar) {
-	dependsOn configurations.testRuntimeClasspath
-	manifest {
-		attributes('Main-Class': 'com.example.ExamplePluginTest', 'Multi-Release': true)
-	}
-
-	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-	from sourceSets.main.output
-	from sourceSets.test.output
-	from {
-		configurations.testRuntimeClasspath.collect { file ->
-			file.isDirectory() ? file : zipTree(file)
-		}
-	}
-
-	exclude 'META-INF/INDEX.LIST'
-	exclude 'META-INF/*.SF'
-	exclude 'META-INF/*.DSA'
-	exclude 'META-INF/*.RSA'
-	exclude '**/module-info.class'
-
-	group = BasePlugin.BUILD_GROUP
-	archiveClassifier.set('shadow')
-	archiveFileName.set("${rootProject.name}-${project.version}-all.jar")
+tasks.named('shadowJar') {
+    archiveBaseName.set('combat-bracket-highlighter')
+    archiveClassifier.set('')
+    archiveVersion.set('')
 }
