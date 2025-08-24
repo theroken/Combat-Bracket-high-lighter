@@ -2,10 +2,9 @@ package com.combatbrackethighlighter;
 
 public enum HighlightStyle
 {
-    NAME_TAG("Name Only"),
-    TILE("Tile Glow"),
-    OUTLINE("Glow Outline"),
-    NAME_AND_OUTLINE("Name + Glow");
+    TILE("Tile Only"),
+    GLOW("Glow Only"),
+    TILE_AND_GLOW("Tile + Glow");
 
     private final String label;
 
