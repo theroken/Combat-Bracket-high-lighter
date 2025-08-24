@@ -28,7 +28,7 @@ Designed for PvP players who want clear, customizable visuals of who they can or
     - Out of reach but close
 
 - **Highlight Opacity (NEW)**
-    - Adjustable from **0%–100%** in 10% increments
+    - Adjustable from **0%–100%** 
     - Applies to **tiles**, **glow outlines**, and **labels**
 
 ---
