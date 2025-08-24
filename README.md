@@ -51,9 +51,9 @@ All settings are available in RuneLite’s plugin panel:
 
 ## 📷 Screenshots
 
-**Plugin Settings**
+
 ![Settings Panel](images/settings.png)
 
-**Tile + Glow Example**
+
 ![Tile and Glow](images/tile-glow.png)
 
