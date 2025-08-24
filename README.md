@@ -57,10 +57,3 @@ All settings are available in RuneLite’s plugin panel:
 **Tile + Glow Example**
 ![Tile and Glow](images/tile-glow.png)
 
----
-
-## 🚀 Installation
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/combat-bracket-highlighter.git
